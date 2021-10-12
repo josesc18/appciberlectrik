@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="tituloprincipal">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">#152161</item>
+        <item name="android:textSize">34sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="fondo">
+        <item name="android:background">#E4E1E1</item>
+    </style>
+
+    <style name="etiqueta1">
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">#03A9F4</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="caja1">
+        <item name="android:layout_width">250dp</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:ems">10</item>
+        <item name="android:inputType">textPersonName</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textColor">#2C3FA8</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="cajaclave" parent="caja1">
+        <item name="android:layout_width">250dp</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:ems">10</item>
+        <item name="android:inputType">textPassword</item>
+    </style>
+
+    <style name="boton">
+        <item name="android:layout_width">130dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">#03A9F4</item>
+    </style>
+
+    <style name="botoncrud">
+        <item name="android:layout_width">140dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">#2C3FA8</item>
+    </style>
+
+
+</resources>

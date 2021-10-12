@@ -1,10 +1,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="pe.com.ciberelectrik.MainActivity">
+    tools:context="pe.com.appciberelectrik.act.ActividadMenu">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/jmiPerfil"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="Perfil"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/jmiDistrito"
+        android:orderInCategory="101"
+        android:title="Distrito" />
+    <item
+        android:id="@+id/jmiEmpelado"
+        android:orderInCategory="102"
+        android:title="Empleado" />
+    <item
+        android:id="@+id/jmiCliente"
+        android:orderInCategory="103"
+        android:title="Cliente" />
+    <item
+        android:id="@+id/jmiCerraSesion"
+        android:orderInCategory="104"
+        android:title="Cerrar Sesion" />
 </menu>

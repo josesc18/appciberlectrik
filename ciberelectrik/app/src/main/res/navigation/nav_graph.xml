@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="pe.com.ciberelectrik.FirstFragment"
+        android:name="pe.com.appciberelectrik.act.ActividadDistrito"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/actividad_distrito">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
@@ -17,9 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="pe.com.ciberelectrik.SecondFragment"
+        android:name="pe.com.appciberelectrik.act.ActividadCliente"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/actividad_cliente">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"

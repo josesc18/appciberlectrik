@@ -1,4 +1,4 @@
-package pe.com.ciberelectrik;
+package pe.com.appciberelectrik;
 
 import org.junit.Test;
 

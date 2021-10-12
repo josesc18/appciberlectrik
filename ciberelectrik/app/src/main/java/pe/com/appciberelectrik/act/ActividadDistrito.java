@@ -1,4 +1,4 @@
-package pe.com.ciberelectrik;
+package pe.com.appciberelectrik.act;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,11 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import pe.com.ciberelectrik.databinding.FragmentSecondBinding;
 
-public class SecondFragment extends Fragment {
 
-    private FragmentSecondBinding binding;
+public class ActividadDistrito extends Fragment {
+
+
 
     @Override
     public View onCreateView(
@@ -21,27 +21,20 @@ public class SecondFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentSecondBinding.inflate(inflater, container, false);
-        return binding.getRoot();
+     return null;
 
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
-            }
-        });
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+
     }
 
 }
