@@ -57,6 +57,12 @@ public class ActividadMenu extends AppCompatActivity {
                 ft.addToBackStack(null);
                 ft.commit();
                 return true;
+            case R.id.jmiDistrito:
+                ActividadDistrito fdistrito = new ActividadDistrito();
+                ft=getFragmentManager().beginTransaction();
+                ft.replace(R.id.contenedor,fdistrito, ActividadDistrito.TAG);
+                ft.addToBackStack(null);
+                ft.commit();
 
         }
         return super.onOptionsItemSelected(item);

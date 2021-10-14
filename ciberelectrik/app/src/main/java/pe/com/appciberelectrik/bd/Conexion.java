@@ -40,6 +40,7 @@ public class Conexion extends SQLiteOpenHelper {
                 "dniemp text not null," +
                 "coddis integer not null," +
                 "telemp text," +
+                "diremp text,"+
                 "celemp text not null," +
                 "coremp text not null," +
                 "sexemp text not null," +
@@ -48,7 +49,7 @@ public class Conexion extends SQLiteOpenHelper {
                 "codper integer not null," +
                 "estemp integer not null," +
                 "foreign key (codper) references t_perfil(codper)," +
-                "foreign key (codis) references t_distrito(coddis))";
+                "foreign key (coddis) references t_distrito(coddis))";
         //ejecutamos los comandos para crear la tabla
         db.execSQL(t_perfil);
         db.execSQL(t_distrito);

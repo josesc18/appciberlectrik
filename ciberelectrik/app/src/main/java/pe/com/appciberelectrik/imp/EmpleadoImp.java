@@ -49,7 +49,7 @@ public class EmpleadoImp implements EmpleadoDAO {
                             "p.nomper," +
                             "e.estemp " +
                             "from t_empleado e inner join t_distrito d " +
-                            "on e.codsis=d.coddis inner join t_perfil p " +
+                            "on e.coddis=d.coddis inner join t_perfil p " +
                             "on e.codper=p.codper",null);
             if(cursor.getCount()>0){
                 while(cursor.moveToNext()){
@@ -104,13 +104,15 @@ public class EmpleadoImp implements EmpleadoDAO {
             valores.put("apememp",e.getApellidom());
             valores.put("dniemp",e.getDni());
             valores.put("coddis",e.getDistrito().getCodigo());
+            valores.put("diremp",e.getDireccion());
             valores.put("telemp",e.getTelefono());
             valores.put("celemp",e.getCelular());
             valores.put("coremp",e.getCorreo());
             valores.put("usuemp",e.getUsuario());
             valores.put("claemp",e.getClave());
             valores.put("codper",e.getPerfil().getCodigo());
-            valores.put("estper",e.getEstado());
+            valores.put("estemp",e.getEstado());
+            valores.put("sexemp",e.getSexo());
             //ejecutamos la insercion
             long res=db.insert("t_empleado",null,valores);
             if(res>0){
@@ -131,6 +133,18 @@ public class EmpleadoImp implements EmpleadoDAO {
 
     @Override
     public boolean EliminarEmpleado(Empleado e) {
-        return false;
+        try{
+            valores=new ContentValues();
+            valores.put("estemp",0);
+            int res=db.update("t_empleado",valores,"codemp="+e.getCodigo(),null);
+            if(res==1){
+                return true;
+            }else{
+                return false;
+            }
+        }catch (Exception ex){
+            Log.e("Error:",ex.toString());
+            return false;
+        }
     }
 }

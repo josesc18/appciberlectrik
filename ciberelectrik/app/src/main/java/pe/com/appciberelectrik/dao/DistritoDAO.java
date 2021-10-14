@@ -10,6 +10,6 @@ import pe.com.appciberelectrik.bean.Perfil;
 public interface DistritoDAO {
     public ArrayList<Distrito> MostrarDistrito(Context contexto);
     public boolean RegistrarDistrito(Distrito d, Context contexto);
-    public boolean ActualizarDistrito(Distrito d);
+    public boolean ActualizarDistrito(Distrito d,Context contexto);
     public boolean EliminarDistrito(Distrito d);
 }
