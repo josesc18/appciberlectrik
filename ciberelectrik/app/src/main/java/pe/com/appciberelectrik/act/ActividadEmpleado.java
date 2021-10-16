@@ -16,11 +16,13 @@ import java.util.ArrayList;
 import pe.com.appciberelectrik.R;
 import pe.com.appciberelectrik.adaptadores.AdaptadorComboDistrito;
 import pe.com.appciberelectrik.adaptadores.AdaptadorComboPerfil;
+import pe.com.appciberelectrik.adaptadores.AdaptadorDistrito;
 import pe.com.appciberelectrik.adaptadores.AdaptadorEmpleado;
 import pe.com.appciberelectrik.bean.Distrito;
 import pe.com.appciberelectrik.bean.Empleado;
 import pe.com.appciberelectrik.bean.Perfil;
 import pe.com.appciberelectrik.dao.DistritoDAO;
+import pe.com.appciberelectrik.dao.EmpleadoDAO;
 import pe.com.appciberelectrik.dao.PerfilDAO;
 import pe.com.appciberelectrik.imp.DistritoImp;
 import pe.com.appciberelectrik.imp.EmpleadoImp;
@@ -57,6 +59,8 @@ public class ActividadEmpleado extends Fragment {
     ArrayList<Empleado> registroEmpelado = null;
     AdaptadorEmpleado adaptadorEmpleado;
     FragmentTransaction ft;
+
+    EmpleadoDAO empleadoDao = new EmpleadoImp();
 
     public ActividadEmpleado() {
 
@@ -183,14 +187,22 @@ public class ActividadEmpleado extends Fragment {
                 }else{
                     chkEst.setChecked(false);
                 }
-                Log.d("sexo",""+registroEmpelado.get(fila).getSexo());
-                /*if(registroEmpelado.get(fila).getSexo() == "Masculino"){
+
+                if(registroEmpelado.get(fila).getSexo().equals("Masculino")){
                     rbMas.setChecked(true);
-                }else if(registroEmpelado.get(fila).getSexo() == "Femenino"){
+                }else if(registroEmpelado.get(fila).getSexo().equals("Femenino")){
                     rbFem.setChecked(true);
-                }else if(registroEmpelado.get(fila).getSexo() == "Otro") {
+                }else if(registroEmpelado.get(fila).getSexo().equals("Otro")) {
                     RbOtr.setChecked(true);
-                }*/
+                }
+
+                cboDistrito.setSelection(
+                        getItemDistrito(adaptadorComboDistrito,registroEmpelado.get(fila).getDistrito())
+                );
+
+                cboPerfil.setSelection(
+                        getItemPerfil(adaptadorComboPerfil,registroEmpelado.get(fila).getPerfil())
+                );
             }
         });
 
@@ -259,7 +271,8 @@ public class ActividadEmpleado extends Fragment {
                     empleado.setUsuario(txtUsu.getText().toString());
                     empleado.setClave(txtCla.getText().toString());
                     empleado.setEstado(est);
-                    res = new EmpleadoImp().RegistrarEmpleado(empleado,raiz.getContext());
+
+                    res = empleadoDao.RegistrarEmpleado(empleado,raiz.getContext());
                     if(res){
                         objgeneral.Mensaje(raiz.getContext(), "Se registro el empleado correctamente","Registrar Empleado");
                         CargarFragmento();
@@ -272,6 +285,62 @@ public class ActividadEmpleado extends Fragment {
                         objgeneral.Mensaje(raiz.getContext(), "No se registro el empleado correctamente","Registrar Empleado");
                         CargarFragmento();
                     }
+
+                }
+
+            }
+        });
+
+        btnActualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(fila>=0){
+                    cod = Integer.parseInt(lblCodEmp.getText().toString());
+                    empleado.setCodigo(cod);
+                    empleado.setDni(txtDni.getText().toString());
+                    empleado.setNombre(txtNom.getText().toString());
+                    empleado.setApellidop(txtApep.getText().toString());
+                    empleado.setApellidom(txtApem.getText().toString());
+                    empleado.setDireccion(txtDir.getText().toString());
+                    empleado.setCelular(txtCel.getText().toString());
+                    empleado.setTelefono(txtTel.getText().toString());
+                    empleado.setCorreo(txtCor.getText().toString());
+                    empleado.setUsuario(txtUsu.getText().toString());
+                    empleado.setClave(txtCla.getText().toString());
+
+                    if(chkEst.isChecked()){
+                        est = 1;
+                    }else{
+                        est = 0;
+                    }
+
+                    if(rbMas.isChecked()){
+                        empleado.setSexo(rbMas.getText().toString());
+                    }
+                    if(rbFem.isChecked()){
+                        empleado.setSexo(rbFem.getText().toString());
+                    }
+                    if(RbOtr.isChecked()){
+                        empleado.setSexo(RbOtr.getText().toString());
+                    }
+                    empleado.setEstado(est);
+
+                    res = empleadoDao.ActualizarEmpleado(empleado, raiz.getContext());
+
+                    if(res){
+                        objgeneral.Mensaje(raiz.getContext(), "Se actualizo el empleado correctamente","Actualizar Empleado");
+                        CargarFragmento();
+                        lstEmpleado.setAdapter(adaptadorEmpleado);
+                        objgeneral.Limpiar((ViewGroup) raiz.findViewById(R.id.frmEmpleado));
+                        txtNom.requestFocus();
+                    }else{
+                        objgeneral.Mensaje(raiz.getContext(), "No se actualizo el empleado correctamente","Actualziar Empleado");
+                        CargarFragmento();
+                    }
+
+                }else{
+                    objgeneral.Mensaje(raiz.getContext(), "Seleccione un elemento de la lista","Actualizar Empleado");
+                    CargarFragmento();
                 }
 
             }
@@ -287,7 +356,7 @@ public class ActividadEmpleado extends Fragment {
                     empleado.setCodigo(cod);
 
                     //eliminamos
-                    res=new EmpleadoImp().EliminarEmpleado(empleado);
+                    res=empleadoDao.EliminarEmpleado(empleado, raiz.getContext());
                     if(res){
                         objgeneral.Mensaje(raiz.getContext(), "Se elimino el empleado correctamente","Eliminar empleado");
                         CargarFragmento();
@@ -319,4 +388,30 @@ public class ActividadEmpleado extends Fragment {
         ft.addToBackStack(null);
         ft.commit();
     }
+
+    public int getItemDistrito(AdaptadorComboDistrito adaptador,Distrito obj) {
+        int posicion = 0;
+        for(int i=0; i < adaptador.getCount();i++){
+            Distrito objIns = (Distrito)adaptador.getItem(i);
+            if(objIns.getNombre().equals(obj.getNombre())){
+                posicion = i;
+                break;
+            }
+        }
+        return posicion;
+    }
+
+    public int getItemPerfil(AdaptadorComboPerfil adaptador, Perfil perfil){
+        int posicion = 0;
+        for(int i=0; i < adaptador.getCount();i++){
+            Perfil objIns = (Perfil)adaptador.getItem(i);
+            if(objIns.getNombre().equals(perfil.getNombre())){
+                posicion = i;
+                break;
+            }
+        }
+        return posicion;
+    }
+
+
 }

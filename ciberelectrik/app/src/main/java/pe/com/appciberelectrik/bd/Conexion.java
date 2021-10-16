@@ -61,5 +61,6 @@ public class Conexion extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("drop table if exists t_perfil");
         db.execSQL("drop table if exists t_distrito");
+        db.execSQL("drop table if exists t_empleado");
     }
 }

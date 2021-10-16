@@ -40,6 +40,7 @@ public class EmpleadoImp implements EmpleadoDAO {
                             "e.apepemp, " +
                             "e.apememp," +
                             "e.dniemp, " +
+                            "e.diremp,"+
                             "d.nomdis, " +
                             "e.telemp, " +
                             "e.celemp," +
@@ -47,6 +48,7 @@ public class EmpleadoImp implements EmpleadoDAO {
                             "e.usuemp, " +
                             "e.claemp," +
                             "p.nomper," +
+                            "e.sexemp,"+
                             "e.estemp " +
                             "from t_empleado e inner join t_distrito d " +
                             "on e.coddis=d.coddis inner join t_perfil p " +
@@ -62,18 +64,20 @@ public class EmpleadoImp implements EmpleadoDAO {
                     objempleado.setApellidop(cursor.getString(2));
                     objempleado.setApellidom(cursor.getString(3));
                     objempleado.setDni(cursor.getString(4));
+                    objempleado.setDireccion(cursor.getString(5));
                     //enviando el distrito
-                    objdistrito.setNombre(cursor.getString(5));
+                    objdistrito.setNombre(cursor.getString(6));
                     objempleado.setDistrito(objdistrito);
-                    objempleado.setTelefono(cursor.getString(6));
-                    objempleado.setCelular(cursor.getString(7));
-                    objempleado.setCorreo(cursor.getString(8));
-                    objempleado.setUsuario(cursor.getString(9));
-                    objempleado.setClave(cursor.getString(10));
+                    objempleado.setTelefono(cursor.getString(7));
+                    objempleado.setCelular(cursor.getString(8));
+                    objempleado.setCorreo(cursor.getString(9));
+                    objempleado.setUsuario(cursor.getString(10));
+                    objempleado.setClave(cursor.getString(11));
                     //enviando el perfil
-                    objperfil.setNombre(cursor.getString(11));
+                    objperfil.setNombre(cursor.getString(12));
                     objempleado.setPerfil(objperfil);
-                    objempleado.setEstado(cursor.getInt(12));
+                    objempleado.setSexo(cursor.getString(13));
+                    objempleado.setEstado(cursor.getInt(14));
                     //enviamos los datos al arreglo
                     registroempleado.add(objempleado);
                 }
@@ -91,21 +95,20 @@ public class EmpleadoImp implements EmpleadoDAO {
 
     @Override
     public boolean RegistrarEmpleado(Empleado e, Context contexto) {
-        //creamos la conexion
+
         objconexion=new Conexion(contexto,nombre,null,version);
-        //asignamos el valor para que la base de datos se pueda escribir
         db=objconexion.getWritableDatabase();
         try{
-            //creamos el ContentValues
+
             valores=new ContentValues();
-            //asignamos los valores
+
             valores.put("nomemp",e.getNombre());
             valores.put("apepemp",e.getApellidop());
             valores.put("apememp",e.getApellidom());
             valores.put("dniemp",e.getDni());
             valores.put("coddis",e.getDistrito().getCodigo());
-            valores.put("diremp",e.getDireccion());
             valores.put("telemp",e.getTelefono());
+            valores.put("diremp",e.getDireccion());
             valores.put("celemp",e.getCelular());
             valores.put("coremp",e.getCorreo());
             valores.put("usuemp",e.getUsuario());
@@ -127,16 +130,53 @@ public class EmpleadoImp implements EmpleadoDAO {
     }
 
     @Override
-    public boolean ActualizarEmpleado(Empleado e) {
-        return false;
+    public boolean ActualizarEmpleado(Empleado e,Context contexto) {
+        objconexion=new Conexion(contexto,nombre,null,version);
+        db=objconexion.getWritableDatabase();
+        try{
+            valores=new ContentValues();
+
+            valores.put("nomemp",e.getNombre());
+            valores.put("apepemp",e.getApellidop());
+            valores.put("apememp",e.getApellidom());
+            valores.put("dniemp",e.getDni());
+            valores.put("coddis",e.getDistrito().getCodigo());
+            valores.put("telemp",e.getTelefono());
+            valores.put("diremp",e.getDireccion());
+            valores.put("celemp",e.getCelular());
+            valores.put("coremp",e.getCorreo());
+            valores.put("usuemp",e.getUsuario());
+            valores.put("claemp",e.getClave());
+            valores.put("codper",e.getPerfil().getCodigo());
+            valores.put("estemp",e.getEstado());
+            valores.put("sexemp",e.getSexo());
+
+            int res=db.update(
+                    "t_empleado",valores,
+                    "codemp="+e.getCodigo(),
+                    null);
+            if(res == 1){
+                return true;
+            }else{
+                return false;
+            }
+        }catch (Exception ex){
+            Log.e("Error Actualizar:",ex.toString());
+            return false;
+        }
+
+
     }
 
     @Override
-    public boolean EliminarEmpleado(Empleado e) {
+    public boolean EliminarEmpleado(Empleado e,Context contexto) {
+        objconexion=new Conexion(contexto,nombre,null,version);
+        db=objconexion.getWritableDatabase();
         try{
             valores=new ContentValues();
             valores.put("estemp",0);
-            int res=db.update("t_empleado",valores,"codemp="+e.getCodigo(),null);
+            long res=db.update("t_empleado",valores,"codemp="+e.getCodigo(),null);
+
             if(res==1){
                 return true;
             }else{
