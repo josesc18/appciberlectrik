@@ -50,11 +50,27 @@ public class Conexion extends SQLiteOpenHelper {
                 "estemp integer not null," +
                 "foreign key (codper) references t_perfil(codper)," +
                 "foreign key (coddis) references t_distrito(coddis))";
+
+        t_cliente = "create table t_cliente(" +
+                "codcli integer primary key autoincrement," +
+                "nomcli text not null," +
+                "apecli text not null," +
+                "dnicli text not null," +
+                "telcli text not null," +
+                "celcli text not null," +
+                "dircli text not null," +
+                "corcli text not null," +
+                "coddis integer not null," +
+                "fnacli text not null," +
+                "estcli integer not null,"+
+                "foreign key (coddis) references t_distrito(coddis))";
+
         //ejecutamos los comandos para crear la tabla
         db.execSQL(t_perfil);
         db.execSQL(t_distrito);
         db.execSQL(t_insertdistrito);
         db.execSQL(t_empleado);
+        db.execSQL(t_cliente);
     }
 
     @Override
@@ -62,5 +78,6 @@ public class Conexion extends SQLiteOpenHelper {
         db.execSQL("drop table if exists t_perfil");
         db.execSQL("drop table if exists t_distrito");
         db.execSQL("drop table if exists t_empleado");
+        db.execSQL("drop table if exists t_cliente");
     }
 }

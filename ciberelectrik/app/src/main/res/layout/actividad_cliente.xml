@@ -2,26 +2,263 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frmCliente"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="#FFFFFF"
     tools:context=".act.ActividadCliente">
 
+    <CheckBox
+        android:id="@+id/chkEstCli"
+        android:layout_width="109dp"
+        android:layout_height="36dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="42dp"
+        android:text="Habilitado"
+        app:layout_constraintBottom_toBottomOf="@+id/txtFNacCli"
+        app:layout_constraintEnd_toEndOf="@+id/lstCliente"
+        app:layout_constraintTop_toBottomOf="@+id/txtFNacCli" />
+
     <TextView
-        android:id="@+id/textview_second"
+        android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/button_second"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Estado:"
+        app:layout_constraintStart_toStartOf="@+id/chkEstCli"
+        app:layout_constraintTop_toTopOf="@+id/txtFNacCli" />
+
+    <EditText
+        android:id="@+id/txtDniCli"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="14dp"
+        android:ems="10"
+        android:hint="Ingrese DNI"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtCelCli"
+        app:layout_constraintEnd_toStartOf="@+id/txtCelCli"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnActualizar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_weight="1"
+        android:text="Actualizar"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnRegistrar"
+        app:layout_constraintStart_toEndOf="@+id/btnRegistrar" />
+
+    <Button
+        android:id="@+id/btnEliminar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="35dp"
+        android:layout_weight="1"
+        android:text="Eliminar"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/txtNomCli"
+        android:layout_width="0dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="21dp"
+        android:ems="10"
+        android:hint="Ingrese Nombres"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtApeCli"
+        app:layout_constraintEnd_toStartOf="@+id/txtApeCli"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/cboDistrito"
+        android:layout_width="242dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginBottom="41dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView16" />
+
+    <TextView
+        android:id="@+id/lblCoddis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginBottom="62dp"
+        android:layout_weight="1"
+        android:text="lblCodDis"
+        app:layout_constraintBottom_toTopOf="@+id/txtFNacCli"
+        app:layout_constraintStart_toEndOf="@+id/textView16" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:text="F. Nacimiento:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtFNacCli" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_weight="1"
+        android:text="Seleccine un distrito:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/lblCoddis"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ListView
+        android:id="@+id/lstCliente"
+        android:layout_width="0dp"
+        android:layout_height="174dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="74dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="74dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/btnRegistrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtFNacCli" />
+
+    <EditText
+        android:id="@+id/txtApeCli"
+        android:layout_width="0dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="68dp"
+        android:ems="10"
+        android:hint="Ingrese Apellidos"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtTelCli"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtNomCli"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_second"
+        android:id="@+id/btnRegistrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/previous"
+        android:layout_marginStart="17dp"
+        android:layout_marginBottom="35dp"
+        android:layout_weight="1"
+        android:text="Registrar"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/txtFNacCli"
+        android:layout_width="128dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="278dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="278dp"
+        android:ems="10"
+        android:inputType="date|textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnRegistrar"
+        app:layout_constraintEnd_toEndOf="@+id/textView20"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/txtApeCli" />
+
+    <EditText
+        android:id="@+id/txtTelCli"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="12dp"
+        android:ems="10"
+        android:hint="Ingrese Telefono"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtCelCli"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtCelCli" />
+
+    <EditText
+        android:id="@+id/txtDirCli"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="74dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="74dp"
+        android:ems="10"
+        android:hint="Ingrese direccion"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/cboDistrito"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_second" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTelCli" />
+
+    <EditText
+        android:id="@+id/txtCelCli"
+        android:layout_width="0dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="122dp"
+        android:layout_marginEnd="15dp"
+        android:ems="10"
+        android:hint="Ingrese Celular"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/txtTelCli"
+        app:layout_constraintStart_toEndOf="@+id/txtDniCli"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lblCodCli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="0"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
+        app:layout_constraintStart_toEndOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="22dp"
+        android:text="Codigo:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtCorCli"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="60dp"
+        android:ems="10"
+        android:hint="Ingrese correo"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtDirCli"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtCelCli" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
