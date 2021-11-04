@@ -72,7 +72,13 @@ public class ActividadMenu extends AppCompatActivity {
                 ft.addToBackStack(null);
                 ft.commit();
                 return true;
-
+            case R.id.jmiCategroia:
+                ActividadCategoria fcategoria = new ActividadCategoria();
+                ft=getFragmentManager().beginTransaction();
+                ft.replace(R.id.contenedor,fcategoria, ActividadDistrito.TAG);
+                ft.addToBackStack(null);
+                ft.commit();
+                return true;
         }
         return super.onOptionsItemSelected(item);
 

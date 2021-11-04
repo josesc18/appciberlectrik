@@ -16,6 +16,9 @@
         android:orderInCategory="102"
         android:title="Empleado" />
     <item
+        android:id="@+id/jmiCategroia"
+        android:title="Categoria" />
+    <item
         android:id="@+id/jmiCliente"
         android:orderInCategory="103"
         android:title="Cliente" />
