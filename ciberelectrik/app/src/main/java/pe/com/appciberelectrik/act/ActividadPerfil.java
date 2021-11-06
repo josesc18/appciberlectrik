@@ -56,8 +56,8 @@ public class ActividadPerfil extends Fragment {
         final View raiz=inflater.inflate(R.layout.actividad_perfil, container, false);
         //creamos los controles
         lblCod=raiz.findViewById(R.id.lblCod);
-        txtNom=raiz.findViewById(R.id.txtNom);
-        chkEst=raiz.findViewById(R.id.chkEst);
+        txtNom=raiz.findViewById(R.id.txtNomCat);
+        chkEst=raiz.findViewById(R.id.chkEstCat);
         lstPerfil=raiz.findViewById(R.id.lstPerfil);
         btnRegistrar=raiz.findViewById(R.id.btnRegistrar);
         btnActualizar=raiz.findViewById(R.id.btnActualizar);

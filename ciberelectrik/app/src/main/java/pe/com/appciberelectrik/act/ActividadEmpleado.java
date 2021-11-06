@@ -4,7 +4,6 @@ package pe.com.appciberelectrik.act;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import pe.com.appciberelectrik.R;
 import pe.com.appciberelectrik.adaptadores.AdaptadorComboDistrito;
 import pe.com.appciberelectrik.adaptadores.AdaptadorComboPerfil;
-import pe.com.appciberelectrik.adaptadores.AdaptadorDistrito;
 import pe.com.appciberelectrik.adaptadores.AdaptadorEmpleado;
 import pe.com.appciberelectrik.bean.Distrito;
 import pe.com.appciberelectrik.bean.Empleado;
@@ -130,7 +128,7 @@ public class ActividadEmpleado extends Fragment {
             }
         });
 
-        txtNom = raiz.findViewById(R.id.txtNom);
+        txtNom = raiz.findViewById(R.id.txtNomCat);
         txtApep = raiz.findViewById(R.id.txtApep);
         txtApem = raiz.findViewById(R.id.txtApem);
         txtDir =raiz.findViewById(R.id.txtDir);
@@ -141,7 +139,7 @@ public class ActividadEmpleado extends Fragment {
         txtUsu = raiz.findViewById(R.id.txtUsu);
         txtCla = raiz.findViewById(R.id.txtCla);
 
-        chkEst = raiz.findViewById(R.id.chkEst);
+        chkEst = raiz.findViewById(R.id.chkEstCat);
 
         rbgSex = raiz.findViewById(R.id.rg_sexo);
         rbMas = raiz.findViewById(R.id.rbMas);

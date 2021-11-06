@@ -11,7 +11,7 @@ public class Conexion extends SQLiteOpenHelper {
     //declaramos atributos para la conexion
     private SQLiteDatabase xcon;
     //creamos variables para cada tabla
-    String t_perfil="", t_distrito="", t_empleado="",t_cliente="", t_insertdistrito="";
+    String t_perfil="", t_distrito="", t_empleado="",t_cliente="", t_insertdistrito="", t_categoria;
 
     public Conexion(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -65,12 +65,18 @@ public class Conexion extends SQLiteOpenHelper {
                 "estcli integer not null,"+
                 "foreign key (coddis) references t_distrito(coddis))";
 
+        t_categoria = "CREATE TABLE T_Categoria(" +
+                "codcat integer primary key autoincrement," +
+                "nomcat text NOT NULL," +
+                "estcat integer NOT NULL)";
+
         //ejecutamos los comandos para crear la tabla
         db.execSQL(t_perfil);
         db.execSQL(t_distrito);
         db.execSQL(t_insertdistrito);
         db.execSQL(t_empleado);
         db.execSQL(t_cliente);
+        db.execSQL(t_categoria);
     }
 
     @Override
@@ -79,5 +85,6 @@ public class Conexion extends SQLiteOpenHelper {
         db.execSQL("drop table if exists t_distrito");
         db.execSQL("drop table if exists t_empleado");
         db.execSQL("drop table if exists t_cliente");
+        db.execSQL("drop table if exists t_categoria");
     }
 }
